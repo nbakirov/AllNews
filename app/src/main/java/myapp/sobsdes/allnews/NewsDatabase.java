@@ -32,7 +32,7 @@ public class NewsDatabase extends SQLiteOpenHelper {
 
     }
 
-    public void addNews(News n) {
+    public void addNews(NewsAdapter n) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("news_title", n.getNews_title());
@@ -43,13 +43,13 @@ public class NewsDatabase extends SQLiteOpenHelper {
         cv.put("news_source", n.getNews_source());
         db.insert("NEWS", null, cv);
 
-        Log.d("Add note", n.toString());
+        Log.d("Add news", n.toString());
 
         db.close();
     }
 
-    public List<News> getAllNews() {
-        List<News> noteList = new ArrayList<News>();
+    public List<NewsAdapter> getAllNews() {
+        List<NewsAdapter> noteList = new ArrayList<NewsAdapter>();
 
         String selectQuery = "SELECT * FROM NEWS ORDER BY id DESC";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -58,7 +58,7 @@ public class NewsDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
 
-                News note = new News();
+                NewsAdapter note = new NewsAdapter();
                 note.setNews_id(Integer.valueOf(cursor.getString(0)));
                 note.setNews_title(cursor.getString(1));
                 note.setNews_date(cursor.getString(2));

@@ -4,7 +4,7 @@ package myapp.sobsdes.allnews.imageloader;
 
 import java.util.ArrayList;
 
-import myapp.sobsdes.allnews.News;
+import myapp.sobsdes.allnews.NewsAdapter;
 import myapp.sobsdes.allnews.OneNewsActivity;
 import android.app.Activity;
 import android.content.Context;
@@ -23,12 +23,12 @@ public class LazyImageLoadNewsAdapter extends BaseAdapter implements
 	final String LOG_TAG = "NewsApp";
 	private Activity activity;
 	private String[] data;
-	private ArrayList<News> rData = new ArrayList<News>();
+	private ArrayList<NewsAdapter> rData = new ArrayList<NewsAdapter>();
 	private static LayoutInflater inflater = null;
 	public ImageLoader imageLoader;
 	private Context mContext;
 
-	public LazyImageLoadNewsAdapter(Activity a, ArrayList<News> rD,
+	public LazyImageLoadNewsAdapter(Activity a, ArrayList<NewsAdapter> rD,
 			Context context) {
 		this.mContext = context;
 		activity = a;
@@ -86,7 +86,7 @@ public class LazyImageLoadNewsAdapter extends BaseAdapter implements
 			vi.setTag(holder);
 		} else
 			holder = (ViewHolder) vi.getTag();
-		News item = rData.get(position);
+		NewsAdapter item = rData.get(position);
 
 		Context context = parent.getContext();
 

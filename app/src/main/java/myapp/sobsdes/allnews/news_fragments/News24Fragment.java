@@ -1,9 +1,10 @@
 package myapp.sobsdes.allnews.news_fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-import myapp.sobsdes.allnews.News;
+import myapp.sobsdes.allnews.NewsAdapter;
 import myapp.sobsdes.allnews.NewsDatabase;
 import myapp.sobsdes.allnews.OneNewsActivity;
 import myapp.sobsdes.allnews.imageloader.LazyImageLoadNewsAdapter;
@@ -15,18 +16,12 @@ import java.util.ArrayList;
 import android.support.v4.app.ListFragment;
 import android.widget.ListView;
 
-/**
- * Created by dimsob on 29.06.16.
- */
-
-
 public class News24Fragment extends ListFragment {
     LazyImageLoadNewsAdapter adapter;
     ListView list;
 
-    public News24Fragment() {
+    public News24Fragment(){
     }
-
 
     final String LOG_TAG = "NewsLog";
 
@@ -34,12 +29,12 @@ public class News24Fragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-       list = (ListView) getActivity().findViewById(myapp.sobsdes.allnews.R.id.listView);
+        list = (ListView) getActivity().findViewById(myapp.sobsdes.allnews.R.id.listView);
 
         adapter = new LazyImageLoadNewsAdapter(getActivity(), getData(),
                 getActivity().getApplicationContext());// mStrings
         list.setAdapter(adapter);
-
+        Log.d(LOG_TAG, "переход во фрагмент и  onActivityCreated");
     }
 
     @Override
@@ -54,17 +49,17 @@ public class News24Fragment extends ListFragment {
 
     }
 
-    private ArrayList<News> getData() {
+    private ArrayList<NewsAdapter> getData() {
         NewsDatabase db = new NewsDatabase(getActivity()
                 .getApplicationContext());
-        final ArrayList<News> stringItems = new ArrayList<News>();
+        final ArrayList<NewsAdapter> stringItems = new ArrayList<NewsAdapter>();
 
-        ArrayList<News> pr = (ArrayList<News>) db.getAllNews();
+        ArrayList<NewsAdapter> pr = (ArrayList<NewsAdapter>) db.getAllNews();
 
-        for (News p : pr) {
+        for (NewsAdapter p : pr) {
             stringItems.add(p);
         }
-
+        Log.d(LOG_TAG, "сбор новостей в функции  private ArrayList<NewsAdapter> getData() ");
         return stringItems;
 
     }

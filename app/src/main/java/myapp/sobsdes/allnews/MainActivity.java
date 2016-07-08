@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                            News newspro = new News(
+                            NewsAdapter newspro = new NewsAdapter(
                                  t,
                                     ((Node) sixNm.item(0)).getNodeValue()
                                             .toString(),

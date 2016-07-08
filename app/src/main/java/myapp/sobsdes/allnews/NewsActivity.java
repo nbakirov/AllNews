@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import myapp.sobsdes.allnews.news_fragments.News24Fragment;
 import myapp.sobsdes.allnews.news_fragments.VbFragment;
 
 public class NewsActivity extends AppCompatActivity
@@ -32,17 +33,7 @@ public class NewsActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-      //  ListView(ListView) findViewById(R.id.listView);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //  ListView(ListView) findViewById(R.id.listView);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -116,15 +107,19 @@ public class NewsActivity extends AppCompatActivity
         FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
 
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.vbkg) {
             ftrans.replace(R.id.container, new VbFragment());
+            getSupportActionBar().setSubtitle("vb.kg");
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.kg24kg) {
+            ftrans.replace(R.id.container, new News24Fragment());
+            getSupportActionBar().setSubtitle("24.kg");
 
         } else if (id == R.id.nav_manage) {
 
         }
+        ftrans.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
